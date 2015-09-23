@@ -200,7 +200,9 @@
     <Compile Include="WebApi\MoviesApiController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\views\fundfilters\decimalColumn.html" />
     <Content Include="app\views\fundfilters\filters.html" />
+    <Content Include="app\views\fundfilters\mstarRatingColumn.html" />
     <Content Include="app\views\movies\details.html" />
     <Content Include="app\views\movies\edit.html" />
     <Content Include="app\views\movies\list.html" />

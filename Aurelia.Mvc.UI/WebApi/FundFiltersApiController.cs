@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 
 namespace Aurelia.Mvc.UI.WebApi {
+   [Authorize]
    public class FundFiltersApiController : ApiController {
 
       [ActionName("FundCriteria")]
@@ -48,20 +49,20 @@ namespace Aurelia.Mvc.UI.WebApi {
       #region Columns
 
       private static readonly List<ColumnViewModel> Columns = new List<ColumnViewModel> {
-         new ColumnViewModel {
-            ColumnId = 3,
-            SectionId = 1,
-            FriendlyName = "Category",
-            DataType = "Category",
-            OrderNum = 1,
-            CompareOperatorId = 1,
-            CompareAgainstId = null,
-            AllowForFilter = true,
-            AllowForPassFail = false,
-            AllowForPointBased = false,
-            DefaultOperator = "=",
-            FormatMask = null
-         },
+         //new ColumnViewModel {
+         //   ColumnId = 3,
+         //   SectionId = 1,
+         //   FriendlyName = "Category",
+         //   DataType = "Category",
+         //   OrderNum = 1,
+         //   CompareOperatorId = 1,
+         //   CompareAgainstId = null,
+         //   AllowForFilter = true,
+         //   AllowForPassFail = false,
+         //   AllowForPointBased = false,
+         //   DefaultOperator = "=",
+         //   FormatMask = null
+         //},
          new ColumnViewModel {
             ColumnId = 6,
             SectionId = 2,
@@ -76,20 +77,20 @@ namespace Aurelia.Mvc.UI.WebApi {
             DefaultOperator = ">=",
             FormatMask = "4.2"
          },
-         new ColumnViewModel {
-            ColumnId = 5,
-            SectionId = 3,
-            FriendlyName = "% Rank Category YTD",
-            DataType = "Integer",
-            OrderNum = 1,
-            CompareOperatorId = 2,
-            CompareAgainstId = null,
-            AllowForFilter = true,
-            AllowForPassFail = true,
-            AllowForPointBased = true,
-            DefaultOperator = "<=",
-            FormatMask = "3.0"
-         },
+         //new ColumnViewModel {
+         //   ColumnId = 5,
+         //   SectionId = 3,
+         //   FriendlyName = "% Rank Category YTD",
+         //   DataType = "Integer",
+         //   OrderNum = 1,
+         //   CompareOperatorId = 2,
+         //   CompareAgainstId = null,
+         //   AllowForFilter = true,
+         //   AllowForPassFail = true,
+         //   AllowForPointBased = true,
+         //   DefaultOperator = "<=",
+         //   FormatMask = "3.0"
+         //},
          new ColumnViewModel {
             ColumnId = 20,
             SectionId = 4,
@@ -118,20 +119,20 @@ namespace Aurelia.Mvc.UI.WebApi {
             DefaultOperator = ">=",
             FormatMask = null
          },
-         new ColumnViewModel {
-            ColumnId = 22,
-            SectionId = 6,
-            FriendlyName = "MStar Return 3 Yr",
-            DataType = "HighLow",
-            OrderNum = 1,
-            CompareOperatorId = 2,
-            CompareAgainstId = null,
-            AllowForFilter = true,
-            AllowForPassFail = true,
-            AllowForPointBased = true,
-            DefaultOperator = ">=",
-            FormatMask = null
-         },
+         //new ColumnViewModel {
+         //   ColumnId = 22,
+         //   SectionId = 6,
+         //   FriendlyName = "MStar Return 3 Yr",
+         //   DataType = "HighLow",
+         //   OrderNum = 1,
+         //   CompareOperatorId = 2,
+         //   CompareAgainstId = null,
+         //   AllowForFilter = true,
+         //   AllowForPassFail = true,
+         //   AllowForPointBased = true,
+         //   DefaultOperator = ">=",
+         //   FormatMask = null
+         //},
          new ColumnViewModel {
             ColumnId = 28,
             SectionId = 7,
@@ -188,34 +189,34 @@ namespace Aurelia.Mvc.UI.WebApi {
             DefaultOperator = "<=",
             FormatMask = "3.2"
          },
-         new ColumnViewModel {
-            ColumnId = 55,
-            SectionId = 11,
-            FriendlyName = "Net Assets",
-            DataType = "Currency",
-            OrderNum = 1,
-            CompareOperatorId = 2,
-            CompareAgainstId = 1,
-            AllowForFilter = true,
-            AllowForPassFail = true,
-            AllowForPointBased = true,
-            DefaultOperator = ">=",
-            FormatMask = "12.2"
-         },
-         new ColumnViewModel {
-            ColumnId = 58,
-            SectionId = 12,
-            FriendlyName = "Revenue Sharing (basis points)",
-            DataType = "PDecimal",
-            OrderNum = 1,
-            CompareOperatorId = 2,
-            CompareAgainstId = null,
-            AllowForFilter = true,
-            AllowForPassFail = true,
-            AllowForPointBased = false,
-            DefaultOperator = ">=",
-            FormatMask = "3.1"
-         },
+         //new ColumnViewModel {
+         //   ColumnId = 55,
+         //   SectionId = 11,
+         //   FriendlyName = "Net Assets",
+         //   DataType = "Currency",
+         //   OrderNum = 1,
+         //   CompareOperatorId = 2,
+         //   CompareAgainstId = 1,
+         //   AllowForFilter = true,
+         //   AllowForPassFail = true,
+         //   AllowForPointBased = true,
+         //   DefaultOperator = ">=",
+         //   FormatMask = "12.2"
+         //},
+         //new ColumnViewModel {
+         //   ColumnId = 58,
+         //   SectionId = 12,
+         //   FriendlyName = "Revenue Sharing (basis points)",
+         //   DataType = "PDecimal",
+         //   OrderNum = 1,
+         //   CompareOperatorId = 2,
+         //   CompareAgainstId = null,
+         //   AllowForFilter = true,
+         //   AllowForPassFail = true,
+         //   AllowForPointBased = false,
+         //   DefaultOperator = ">=",
+         //   FormatMask = "3.1"
+         //},
          new ColumnViewModel {
             ColumnId = 44,
             SectionId = 13,

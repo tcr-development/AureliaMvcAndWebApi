@@ -3,7 +3,10 @@
       <h3>${group.name}</h3>
       <div repeat.for="section of group.sections">
          <h4>${section.name}</h4>
-         <h6 repeat.for="column of section.columns">${column.friendlyName}</h6>
+         <div repeat.for="column of section.columns">
+            <compose view-model.bind="column" view="views/fundfilters/${column.dataType}Column.html"></compose>
+         </div>
+         
       </div>
 
    </div>
