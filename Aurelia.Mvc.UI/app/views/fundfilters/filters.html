@@ -1,0 +1,10 @@
+﻿<template>
+   <div class="col-md-4 col-sm-12" repeat.for="group of groups">
+      <h3>${group.name}</h3>
+      <div repeat.for="section of group.sections">
+         <h4>${section.name}</h4>
+         <h6 repeat.for="column of section.columns">${column.friendlyName}</h6>
+      </div>
+
+   </div>
+</template>

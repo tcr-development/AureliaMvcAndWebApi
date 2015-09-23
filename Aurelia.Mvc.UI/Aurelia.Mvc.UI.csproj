@@ -180,6 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FundFiltersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
@@ -192,11 +193,14 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TcrPasswordValidator.cs" />
     <Compile Include="Models\TcrUserValidator.cs" />
+    <Compile Include="Models\ViewModels\FilterDataViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="WebApi\FundFiltersApiController.cs" />
     <Compile Include="WebApi\MoviesApiController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\views\fundfilters\filters.html" />
     <Content Include="app\views\movies\details.html" />
     <Content Include="app\views\movies\edit.html" />
     <Content Include="app\views\movies\list.html" />
@@ -278,10 +282,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\underscore\underscore-min.map" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\FundFilters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\models\models.ts" />
+    <TypeScriptCompile Include="app\services\fundFilterService.ts" />
     <TypeScriptCompile Include="app\services\movieService.ts" />
+    <TypeScriptCompile Include="app\views\fundfilters\filters.ts" />
+    <TypeScriptCompile Include="app\views\fundfilters\main.ts" />
     <TypeScriptCompile Include="app\views\movies\details.ts" />
     <TypeScriptCompile Include="app\views\movies\edit.ts" />
     <TypeScriptCompile Include="app\views\movies\list.ts" />

@@ -7,6 +7,7 @@ namespace Aurelia.Mvc.UI {
    public static class WebApiConfig {
       public static string ApiControllerOnly = "ApiControllerOnly";
       public static string ApiControllerAndId = "ApiControllerAndId";
+      public static string ApiControllerAction = "ApiControllerAction";
 
       public static void Register(HttpConfiguration config) {
          // Web API configuration and services
@@ -20,6 +21,11 @@ namespace Aurelia.Mvc.UI {
              routeTemplate: "api/{controller}/{id}",
              defaults: null,
              constraints: new { id = @"^\d+$" } // all digits
+         );
+
+         config.Routes.MapHttpRoute(
+            name: ApiControllerAction,
+            routeTemplate: "api/{controller}/{action}"
          );
 
          //api/todoapi
