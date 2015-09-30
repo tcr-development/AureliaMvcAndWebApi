@@ -47,11 +47,12 @@
       require.config({
          baseUrl: baseUrl,
          paths: {
-            aurelia: baseUrl + "/scripts/aurelia",
-            views: baseUrl + "/app/views",
-            services: baseUrl + "/app/services",
-            models: baseUrl + "/app/models",
-            underscore: baseUrl + "/scripts/underscore/underscore-min"
+            aurelia: baseUrl + "scripts/aurelia",
+            views: baseUrl + "app/views",
+            services: baseUrl + "app/services",
+            models: baseUrl + "app/models",
+            underscore: baseUrl + "scripts/underscore/underscore-min",
+            numerals: baseUrl + "scripts/numeral/numeral.min"
          },
          shim: {
             "underscore": {
@@ -60,9 +61,11 @@
          }
       });
 
-      require(["aurelia/aurelia-bundle"], function (au) {
+      require(["aurelia/aurelia-bundle-latest"], function (au) {
          require(["aurelia-bundle-manifest"], function (abm) {
             require(["aurelia-bootstrapper"], function (b) {
+               require(["numerals"], function (b) {
+               });
             });
          });
       });

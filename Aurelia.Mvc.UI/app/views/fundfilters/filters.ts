@@ -30,6 +30,9 @@ export class Filters{
                s.columns = criteria.columns.filter(column => {
                   return column.sectionId === s.id;
                });
+               _.each(s.columns, column => {
+                  column.scoring = new Models.ScoringSettings(column.defaultOperator);
+               });
             });
          });
       });

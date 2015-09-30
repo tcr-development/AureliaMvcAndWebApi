@@ -1,10 +1,17 @@
 ﻿<template>
    <h6>${friendlyName}</h6>
-   <select>
+   <select value.bind="scoring.compareOperator">
+      <option value="<">less than</option>
+      <option value="<=">less than or equal to</option>
+      <option value="=">equal to</option>
+      <option value=">=">greater than or equal to</option>
+      <option value=">">greater than</option>
+   </select>
+   <select value.bind="scoring.lowerValue">
       <option value="1">1 Star</option>
-      <option value="2">2 Star</option>
-      <option value="3">3 Star</option>
-      <option value="4">4 Star</option>
-      <option value="5">5 Star</option>
+      <option value="2">2 Stars</option>
+      <option value="3">3 Stars</option>
+      <option value="4">4 Stars</option>
+      <option value="5">5 Stars</option>
    </select>
 </template>

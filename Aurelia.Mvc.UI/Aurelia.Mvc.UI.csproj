@@ -239,6 +239,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\numeral\numeral.js" />
+    <Content Include="Scripts\numeral\numeral.min.js" />
     <Content Include="Scripts\requirejs\require.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -287,6 +293,9 @@
     <Content Include="Views\FundFilters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\converters\currency-format.ts" />
+    <TypeScriptCompile Include="app\converters\date-format.ts" />
+    <TypeScriptCompile Include="app\converters\decimal-format.ts" />
     <TypeScriptCompile Include="app\models\models.ts" />
     <TypeScriptCompile Include="app\services\fundFilterService.ts" />
     <TypeScriptCompile Include="app\services\movieService.ts" />
@@ -329,7 +338,10 @@
     <TypeScriptCompile Include="typings\core-js.d.ts" />
     <TypeScriptCompile Include="typings\core-js\core-js.d.ts" />
     <TypeScriptCompile Include="typings\es6.d.ts" />
+    <TypeScriptCompile Include="typings\moment\moment-node.d.ts" />
+    <TypeScriptCompile Include="typings\moment\moment.d.ts" />
     <TypeScriptCompile Include="typings\nprogress.d.ts" />
+    <TypeScriptCompile Include="typings\numeraljs\numeraljs.d.ts" />
     <TypeScriptCompile Include="typings\reflect-metadata.d.ts" />
     <TypeScriptCompile Include="typings\requirejs\require.d.ts" />
     <TypeScriptCompile Include="typings\underscore\underscore.d.ts" />

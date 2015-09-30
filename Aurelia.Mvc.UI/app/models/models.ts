@@ -36,6 +36,7 @@
       allowForPointBased: boolean;
       formatMask: string;
       defaultOperator: string;
+      scoring: ScoringSettings;
    }
 
    export class FilterCompareAgainst {
@@ -73,6 +74,17 @@
       compareOperators: FilterCompareOperator[];
       compareAgainst: FilterCompareAgainst[];
       dataLists: FilterDataList[];
+   }
+
+   export class ScoringSettings {
+      constructor(defaultOperator: string) {
+         this.compareOperator = defaultOperator;
+      }
+      compareAgainstId: number;
+      compareOperator: string;
+      lowerValue: string;
+      upperValue: string;
+      weighting: number;
    }
 }
 
