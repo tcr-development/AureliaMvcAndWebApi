@@ -8,6 +8,7 @@
    <link rel="icon" href="~/favicon.ico" />
    @Styles.Render("~/Content/css")
    @Scripts.Render("~/bundles/modernizr")
+   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -28,6 +29,7 @@
                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                <li>@Html.ActionLink("Movies", "Index", "Movies")</li>
                <li>@Html.ActionLink("Fund Filters", "Index", "FundFilters")</li>
+               <li>@Html.ActionLink("Wijmo Grid", "Index", "Grid")</li>
             </ul>
             @Html.Partial("_LoginPartial")
          </div>

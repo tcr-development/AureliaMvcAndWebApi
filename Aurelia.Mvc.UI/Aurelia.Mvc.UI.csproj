@@ -180,6 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\FundFiltersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -203,12 +204,15 @@
     <Content Include="app\views\fundfilters\decimalColumn.html" />
     <Content Include="app\views\fundfilters\filters.html" />
     <Content Include="app\views\fundfilters\mstarRatingColumn.html" />
+    <Content Include="app\views\grid\index.html" />
+    <Content Include="app\views\grid\wijmogrid.html" />
     <Content Include="app\views\movies\details.html" />
     <Content Include="app\views\movies\edit.html" />
     <Content Include="app\views\movies\list.html" />
     <Content Include="app\views\movies\movies.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\wijmo.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -224,6 +228,7 @@
     <Content Include="Scripts\core-js\client\library.min.map" />
     <Content Include="Scripts\core-js\client\shim.min.js.map" />
     <Content Include="Scripts\core-js\client\shim.min.map" />
+    <Content Include="app\views\grid\wijmotwogridsampleapp.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\core-js\client\core.js" />
     <Content Include="Scripts\core-js\client\core.min.js" />
@@ -239,11 +244,29 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pa-services.js" />
+    <Content Include="Views\Grid\Index.cshtml" />
+    <Content Include="Views\Grid\Wijmo.cshtml" />
+    <Content Include="Scripts\pa-wijmo-grid.js.map" />
+    <Content Include="Scripts\pa-storage.js.map" />
+    <TypeScriptCompile Include="app\views\grid\index.ts" />
+    <TypeScriptCompile Include="app\views\grid\wijmogrid.ts" />
+    <TypeScriptCompile Include="app\views\grid\wijmocontrolapp.ts" />
+    <TypeScriptCompile Include="app\views\grid\wijmotwogridsampleapp.ts" />
+    <TypeScriptCompile Include="Scripts\pa-storage.ts" />
+    <Content Include="Scripts\pa-storage.js" />
+    <Content Include="Scripts\pa-wijmo-grid.js" />
+    <Content Include="Scripts\q.js" />
+    <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\requirejs\require.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\underscore\underscore-min.js" />
     <Content Include="Scripts\underscore\underscore.js" />
+    <Content Include="Scripts\wijmo.grid.filter.min.js" />
+    <Content Include="Scripts\wijmo.grid.min.js" />
+    <Content Include="Scripts\wijmo.input.min.js" />
+    <Content Include="Scripts\wijmo.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="typings\aurelia-amd\aurelia-amd.d.js" />
     <Content Include="typings\core-js\core-js.d.js" />
@@ -298,6 +321,7 @@
     <TypeScriptCompile Include="app\views\movies\main.ts" />
     <TypeScriptCompile Include="app\views\movies\movie-item.ts" />
     <TypeScriptCompile Include="app\views\movies\movies.ts" />
+    <TypeScriptCompile Include="Scripts\pa-wijmo-grid.ts" />
     <TypeScriptCompile Include="typings\aurelia-amd\aurelia-amd.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\aurelia-animator-css.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\aurelia-app-contacts.d.ts" />
@@ -329,13 +353,20 @@
     <TypeScriptCompile Include="typings\core-js.d.ts" />
     <TypeScriptCompile Include="typings\core-js\core-js.d.ts" />
     <TypeScriptCompile Include="typings\es6.d.ts" />
+    <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\modernizr.d.ts" />
     <TypeScriptCompile Include="typings\nprogress.d.ts" />
+    <TypeScriptCompile Include="typings\Q.d.ts" />
     <TypeScriptCompile Include="typings\reflect-metadata.d.ts" />
     <TypeScriptCompile Include="typings\requirejs\require.d.ts" />
     <TypeScriptCompile Include="typings\underscore\underscore.d.ts" />
     <TypeScriptCompile Include="typings\whatwg-fetch\whatwg-fetch.d.ts" />
     <TypeScriptCompile Include="app\views\about\about.ts" />
     <TypeScriptCompile Include="app\views\about\main.ts" />
+    <TypeScriptCompile Include="typings\wijmo\wijmo.d.ts" />
+    <TypeScriptCompile Include="typings\wijmo\wijmo.grid.d.ts" />
+    <TypeScriptCompile Include="typings\wijmo\wijmo.grid.filter.d.ts" />
+    <TypeScriptCompile Include="typings\wijmo\wijmo.input.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -355,6 +386,22 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+    <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>

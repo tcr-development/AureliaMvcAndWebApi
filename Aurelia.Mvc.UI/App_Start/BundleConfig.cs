@@ -6,7 +6,18 @@ namespace Aurelia.Mvc.UI {
       // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
       public static void RegisterBundles(BundleCollection bundles) {
          bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                     "~/Scripts/jquery-{version}.js"));
+                     "~/Scripts/jquery-{version}.js",
+                     "~/Scripts/underscore/underscore.js"));
+
+         bundles.Add(new ScriptBundle("~/bundles/flexGrid").Include(
+                     "~/Scripts/wijmo.min.js",
+                     "~/Scripts/wijmo.input.min.js",
+                     "~/Scripts/wijmo.grid.min.js",
+                     "~/Scripts/wijmo.grid.filter.min.js",
+                     "~/Scripts/pa-storage.js",
+                     "~/Scripts/pa-wijmo-grid.js",
+                     "~/Scripts/q.min.js"
+                     ));
 
          bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                      "~/Scripts/jquery.validate*"));
@@ -22,7 +33,8 @@ namespace Aurelia.Mvc.UI {
 
          bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
-                   "~/Content/site.css"));
+                   "~/Content/site.css",
+                   "~/Content/wijmo.min.css"));
       }
    }
 }
