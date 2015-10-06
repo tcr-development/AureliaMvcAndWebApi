@@ -255,6 +255,10 @@
     <Content Include="Views\Grid\Wijmo.cshtml" />
     <Content Include="Scripts\pa-wijmo-grid.js.map" />
     <Content Include="Scripts\pa-storage.js.map" />
+    <TypeScriptCompile Include="app\namespace\LettersOnlyValidator.ts" />
+    <TypeScriptCompile Include="app\namespace\Test.ts" />
+    <TypeScriptCompile Include="app\namespace\Validation.ts" />
+    <TypeScriptCompile Include="app\namespace\ZipCodeValidator.ts" />
     <TypeScriptCompile Include="app\views\grid\index.ts" />
     <TypeScriptCompile Include="app\views\grid\wijmogrid.ts" />
     <TypeScriptCompile Include="app\views\grid\wijmocontrolapp.ts" />
