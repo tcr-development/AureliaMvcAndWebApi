@@ -54,12 +54,15 @@
             services: baseUrl + "app/services",
             models: baseUrl + "app/models",
             underscore: baseUrl + "scripts/underscore/underscore-min",
-            numerals: baseUrl + "scripts/numeral/numeral.min"
+            numerals: baseUrl + "scripts/numeral/numeral.min",
+            storage: baseUrl + "scripts/pa-storage",
+            pa: baseUrl + "scripts/pa-wijmo-grid"
          },
          shim: {
             "underscore": {
                exports: "_"
-            }
+            } ,
+            "pa": {deps: ['storage', 'underscore'] }
          }
       });
 
@@ -67,6 +70,10 @@
          require(["aurelia-bundle-manifest"], function (abm) {
             require(["aurelia-bootstrapper"], function (b) {
                require(["numerals"], function (b) {
+               });
+               require(["storage"], function (b) {
+               });
+               require(["pa"], function (b) {
                });
             });
          });
