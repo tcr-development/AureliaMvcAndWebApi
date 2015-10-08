@@ -1,5 +1,5 @@
 ﻿/// <reference path="validation.ts" />
-module Validation {
+namespace Validation {
    var lettersRegexp = /^[A-Za-z]+$/;
    export class LettersOnlyValidator implements IStringValidator {
       isAcceptable(s: string) {

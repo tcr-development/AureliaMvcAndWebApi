@@ -1,5 +1,5 @@
 ﻿/// <reference path="validation.ts" />
-module Validation {
+namespace Validation {
    var numberRegexp = /^[0-9]+$/;
    export class ZipCodeValidator implements IStringValidator {
       isAcceptable(s: string) {
