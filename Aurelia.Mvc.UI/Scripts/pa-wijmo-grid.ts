@@ -350,6 +350,29 @@ module Pa.Grid {
             this.gridIdentifier = identifier;
         }
 
+        create(vm, grid, options) {
+            grid.initialize(options);
+            grid.sortingColumn.addHandler(function(e) {
+                Pa.Grid.SortHelper.sortingColumn(vm, e);
+            });
+            grid.selectionChanged.addHandler(function (e) {
+                //http://wijmo.com/topic/flexgrid-force-sort-icon/
+                Pa.Grid.Helpers.getSelectedRows(vm.grid, vm.selectedRows);
+                vm.currentRow = Pa.Grid.Helpers.getCurrentRow(vm.grid);
+            });
+            grid.resizedColumn.addHandler(function (e) {
+                Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id);
+            });
+            grid.draggedColumn.addHandler(function (e) {
+                Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id);
+            });
+
+            //this.createMStarEditor(grid.columns.getColumn('m255RatingValue'));
+            //this.createMStarEditor(grid.columns.getColumn('m36RatingValue'));
+            //this.createMStarEditor(grid.columns.getColumn('m60RatingValue'));
+            //this.createMStarEditor(grid.columns.getColumn('m120RatingValue'));
+        }
+
         defaultOptions(vm, scoringTools) {
             return {
                 autoGenerateColumns: true,
@@ -358,16 +381,17 @@ module Pa.Grid {
                 //frozenColumns: 5,
                 //isReadOnly: false,
                 selectionMode: wijmo.grid.SelectionMode.ListBox,
-                onSortingColumn: function(e) {
-                    Pa.Grid.SortHelper.sortingColumn(vm, e);
-                },
-                onSelectionChanged: function(e) {
-                    //http://wijmo.com/topic/flexgrid-force-sort-icon/
-                    Pa.Grid.Helpers.getSelectedRows(vm.grid, vm.selectedRows);
-                    vm.currentRow = Pa.Grid.Helpers.getCurrentRow(vm.grid);
-                },
-                onResizedColumn: function (e) { Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id); },
-                onDraggedColumn: function (e) { Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id); },
+                //onSortingColumn: function(e) {
+                //    Pa.Grid.SortHelper.sortingColumn(vm, e);
+                //},
+                //onSelectionChanged: function (e: wijmo.EventArgs) {
+                //    //http://wijmo.com/topic/flexgrid-force-sort-icon/
+                //    Pa.Grid.Helpers.getSelectedRows(vm.grid, vm.selectedRows);
+                //    vm.currentRow = Pa.Grid.Helpers.getCurrentRow(vm.grid);
+                //    //super.onSelectionChanged(e);
+                //},
+                //onResizedColumn: function (e) { Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id); },
+                //onDraggedColumn: function (e) { Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id); },
                 itemFormatter: function(panel, r, c, cell) {
                     if (panel.cellType === wijmo.grid.CellType.ColumnHeader) {
                         var col = panel.columns[c];

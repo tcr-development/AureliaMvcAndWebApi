@@ -46,7 +46,7 @@ export class WijmoGrid {
         defaultOptions.frozenColumns = 5;
         defaultOptions.isReadOnly = false;
 
-        this.grid.initialize(defaultOptions);
+        this.fundListGridHelper.create(self, self.grid, defaultOptions);
 
         this.fundListGridHelper.createMStarEditor(this.grid.columns.getColumn('m255RatingValue'));
         this.fundListGridHelper.createMStarEditor(this.grid.columns.getColumn('m36RatingValue'));
@@ -76,7 +76,9 @@ export class WijmoGrid {
         
        
     }
-
+    test(s, e) {
+        
+    }
     getSelectedRows() {
         Pa.Grid.Helpers.getSelectedRows(this.grid, this.selectedRows);
         return this.selectedRows;

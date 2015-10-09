@@ -47,7 +47,8 @@
       var baseUrl = "@Html.BaseUrl(true)";
 
       require.config({
-         baseUrl: baseUrl,
+          baseUrl: baseUrl,
+          urlArgs: "bust=v2",
          paths: {
             aurelia: baseUrl + "scripts/aurelia",
             views: baseUrl + "app/views",
