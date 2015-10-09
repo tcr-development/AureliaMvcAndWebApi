@@ -1,8 +1,10 @@
 ﻿<template>
     <require from="views/grid/wijmogrid"></require>
-    <wijmogrid id="wijmogrid1" wijmogrid.ref="grid1" auto-bind.bind="true"></wijmogrid>
-    <wijmogrid id="wijmogrid2" wijmogrid.ref="grid2" data.bind="grid1.selectedRows"></wijmogrid>
+    <wijmogrid id="wijmogrid1" grid-state.bind="grid1State" wijmogrid.ref="grid1" auto-bind.bind="true"></wijmogrid>
+    <wijmogrid id="wijmogrid2" grid-state.bind="grid2State" wijmogrid.ref="grid2" data.bind="grid1.selectedRows"></wijmogrid>
 
 
     <div>Selected category: ${grid1.currentRow.category}</div>
+    <div>Selected count as seen by widget: ${grid1.selectedRows.length}</div>
+    <div>Selected count as seen by parent: ${count}</div>
 </template>

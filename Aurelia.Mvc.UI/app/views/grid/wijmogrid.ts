@@ -3,9 +3,10 @@
 
 import {customElement, inject, bindable} from "aurelia-framework";
 
-@inject(Element) 
+@inject(Element)
 @customElement("wijmogrid")
 export class WijmoGrid {
+    @bindable gridState: any;
     grid: wijmo.grid.FlexGrid;
     filter: wijmo.grid.filter.FlexGridFilter;
     id: string = "#gsFlexGrid";
@@ -23,14 +24,22 @@ export class WijmoGrid {
     @bindable scoringTools: boolean = false;
     @bindable data: wijmo.collections.ObservableArray = new wijmo.collections.ObservableArray();
     collectionView: wijmo.collections.CollectionView = new wijmo.collections.CollectionView();
+    $parent;
     constructor(element) {
         this.element = element;
+
     }
+    bind(bindingContext) {
+        this.$parent = bindingContext;
+    }
+
     attached() {
+
         this.id = (<HTMLElement> this.element).id;
         this.grid = new wijmo.grid.FlexGrid(this.element);
-        this.fundListGridHelper = new Pa.Grid.FundListGrid(this.id);
         var self = this;
+
+        this.fundListGridHelper = new Pa.Grid.FundListGrid(this.id);
 
         var defaultOptions = self.fundListGridHelper.defaultOptions(this, false);
 
@@ -59,6 +68,13 @@ export class WijmoGrid {
         if (this.autoBind) {
             this.readFn();  
         }
+
+        //If parent, tell parent grid is activate so it can observe properties
+        if (this.gridState) {
+            this.gridState.activated = true; 
+        }
+        
+       
     }
 
     getSelectedRows() {
@@ -121,3 +137,4 @@ export class WijmoGrid {
         return { data: fundList.data };
     }
 }
+

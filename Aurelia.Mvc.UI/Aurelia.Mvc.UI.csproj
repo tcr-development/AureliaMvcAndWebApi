@@ -205,6 +205,7 @@
     <Content Include="app\views\fundfilters\filters.html" />
     <Content Include="app\views\fundfilters\mstarRatingColumn.html" />
     <Content Include="app\views\grid\index.html" />
+    <Content Include="app\views\grid\multiobserver.js" />
     <Content Include="app\views\grid\wijmogrid.html" />
     <Content Include="app\views\movies\details.html" />
     <Content Include="app\views\movies\edit.html" />
@@ -229,6 +230,7 @@
     <Content Include="Scripts\core-js\client\shim.min.js.map" />
     <Content Include="Scripts\core-js\client\shim.min.map" />
     <Content Include="app\views\grid\wijmotwogridsampleapp.js.map" />
+    <Content Include="app\views\grid\multiobserver.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\core-js\client\core.js" />
     <Content Include="Scripts\core-js\client\core.min.js" />
@@ -260,6 +262,7 @@
     <TypeScriptCompile Include="app\namespace\Validation.ts" />
     <TypeScriptCompile Include="app\namespace\ZipCodeValidator.ts" />
     <TypeScriptCompile Include="app\views\grid\index.ts" />
+    <TypeScriptCompile Include="app\views\grid\multiObserver.ts" />
     <TypeScriptCompile Include="app\views\grid\wijmogrid.ts" />
     <TypeScriptCompile Include="app\views\grid\wijmocontrolapp.ts" />
     <TypeScriptCompile Include="app\views\grid\wijmotwogridsampleapp.ts" />
