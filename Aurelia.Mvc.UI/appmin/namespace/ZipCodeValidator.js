@@ -1,0 +1,1 @@
+var Validation;!function(t){var n=/^[0-9]+$/,i=function(){function t(){}return t.prototype.isAcceptable=function(t){return 5===t.length&&n.test(t)},t}();t.ZipCodeValidator=i}(Validation||(Validation={}));

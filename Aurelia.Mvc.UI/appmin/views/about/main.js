@@ -1,0 +1,1 @@
+define(["require","exports"],function(n,t){function e(n){n.use.standardConfiguration().developmentLogging(),n.start().then(function(n){return n.setRoot("views/about/about")})}t.configure=e});

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
     <require from="views/grid/wijmogrid"></require>
     <wijmogrid id="wijmogrid1" grid-state.bind="grid1State" wijmogrid.ref="grid1" auto-bind.bind="true"></wijmogrid>
     <wijmogrid id="wijmogrid2" grid-state.bind="grid2State" wijmogrid.ref="grid2" dependent-grid="true" data.bind="grid1.selectedRows"></wijmogrid>

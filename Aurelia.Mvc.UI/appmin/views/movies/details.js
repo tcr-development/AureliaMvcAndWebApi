@@ -1,0 +1,1 @@
+define(["require","exports","../../services/movieService"],function(e,i,t){var n=function(){function e(e,i){this.movieSvc=e,this.movie=i}return e.prototype.activate=function(e){var i=this;return this.movieSvc.getById(e.id).then(function(e){return i.movie=e})},e.inject=[t.MovieService],e}();i.Details=n});

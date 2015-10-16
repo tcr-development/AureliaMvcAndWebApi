@@ -1,0 +1,1 @@
+define(["require","exports"],function(e,n){function o(e){e.use.standardConfiguration().developmentLogging(),e.start().then(function(e){return e.setRoot("views/movies/movies")})}n.configure=o});

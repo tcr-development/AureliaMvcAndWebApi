@@ -1,5 +1,6 @@
 ﻿/// <reference path="../typings/underscore/underscore.d.ts" />
 /// <reference path="../typings/jquery/jquery.d.ts" />
+/// <reference path="../typings/wijmo/wijmo.grid.d.ts" />
 
 module Pa.Grid {
     export class SortHelper {
@@ -317,20 +318,20 @@ module Pa.Grid {
             Pa.Storage.setVersionedData(gridId, columns, null);
         }
 
-        static getSelectedRows(grid, observableArray) {
+        static getSelectedRows(grid, self) {
             //http://wijmo.com/topic/flexgrid-force-sort-icon/
             var rows = grid.rows;
-            if (observableArray) {
-                observableArray.clear();
-            } else {
-                observableArray = [];
-            }
+
+            self.selectedRows.beginUpdate();
+            self.selectedRows.clear();
             for (var i = rows.length - 1; i >= 0; i--) {
                 if (rows[i].isSelected && rows[i].dataItem) {
-                    observableArray.push(rows[i].dataItem);
+                     self.selectedRows.push(rows[i].dataItem);
                 }
             }
-            return observableArray;
+            self.selectedRows.endUpdate();
+
+            return;
         }
 
         static getCurrentRow(grid) {
@@ -342,29 +343,32 @@ module Pa.Grid {
 
     export class FundListGrid {
         gridIdentifier: string;
+        $parent: any;
         static widthLargeText = 225;
         static widthSmallText = 125;
         static defaultWidth = 200;
         
-        constructor(identifier) {
+        constructor(identifier, self) {
             this.gridIdentifier = identifier;
+            this.$parent = self;
         }
 
         create(vm, grid, options) {
+            var self = this;
             grid.initialize(options);
             grid.sortingColumn.addHandler(function(e) {
-                Pa.Grid.SortHelper.sortingColumn(vm, e);
+                Pa.Grid.SortHelper.sortingColumn(self.$parent, e);
             });
             grid.selectionChanged.addHandler(function (e) {
                 //http://wijmo.com/topic/flexgrid-force-sort-icon/
-                Pa.Grid.Helpers.getSelectedRows(vm.grid, vm.selectedRows);
+                Pa.Grid.Helpers.getSelectedRows(self.$parent.grid, self.$parent);
                 vm.currentRow = Pa.Grid.Helpers.getCurrentRow(vm.grid);
             });
             grid.resizedColumn.addHandler(function (e) {
-                Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id);
+                Pa.Grid.Helpers.handlePreferences(self.$parent.grid, self.$parent.id);
             });
             grid.draggedColumn.addHandler(function (e) {
-                Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id);
+                Pa.Grid.Helpers.handlePreferences(self.$parent.grid, self.$parent.id);
             });
 
             //this.createMStarEditor(grid.columns.getColumn('m255RatingValue'));
@@ -374,24 +378,15 @@ module Pa.Grid {
         }
 
         defaultOptions(vm, scoringTools) {
+           // var columns = Pa.Grid.FundListGrid.columnDef(scoringTools, vm.id);
+          //  console.log("applied columns", columns);
             return {
-                autoGenerateColumns: true,
+                autoGenerateColumns: false,
                 allowSorting: true,
                 showSort: true,
                 //frozenColumns: 5,
                 //isReadOnly: false,
                 selectionMode: wijmo.grid.SelectionMode.ListBox,
-                //onSortingColumn: function(e) {
-                //    Pa.Grid.SortHelper.sortingColumn(vm, e);
-                //},
-                //onSelectionChanged: function (e: wijmo.EventArgs) {
-                //    //http://wijmo.com/topic/flexgrid-force-sort-icon/
-                //    Pa.Grid.Helpers.getSelectedRows(vm.grid, vm.selectedRows);
-                //    vm.currentRow = Pa.Grid.Helpers.getCurrentRow(vm.grid);
-                //    //super.onSelectionChanged(e);
-                //},
-                //onResizedColumn: function (e) { Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id); },
-                //onDraggedColumn: function (e) { Pa.Grid.Helpers.handlePreferences(vm.grid, vm.id); },
                 itemFormatter: function(panel, r, c, cell) {
                     if (panel.cellType === wijmo.grid.CellType.ColumnHeader) {
                         var col = panel.columns[c];
@@ -410,8 +405,8 @@ module Pa.Grid {
                     if (panel.cellType === wijmo.grid.CellType.Cell && _.contains(mstarcells, panel.columns[c].name)) {
                         cell.innerHTML = Pa.Grid.FundListTemplates.mstars(panel.grid.getCellData(r, c, false));
                     }
-                },
-                columns: Pa.Grid.FundListGrid.columnDef(scoringTools, vm.id)
+                }//,
+              //  columns: columns
             };
         }
 
@@ -482,7 +477,7 @@ module Pa.Grid {
             });
         }
 
-        static columnDef(scoringTools, gridIdentifier) {
+        static setColumnDef(scoringTools, gridIdentifier, grid) {
             var hideSomeColumns = true;
 
             var arrMStarValues = [
@@ -558,10 +553,10 @@ module Pa.Grid {
                 { binding: "m120StandardDeviation", format: "{0:n2}", header: "Standard Deviation 10 Yr", filterable: true, groupable: true, visible: !hideSomeColumns, allowSorting: true, menu: true, width: defaultWidth },
                 { binding: "categoryDetail.m120StandardDeviation", format: "{0:n2}", header: "Category Standard Deviation 10 Yr", filterable: true, groupable: false, visible: !hideSomeColumns, allowSorting: true, menu: true, width: defaultWidth },
 
-                { binding: "m255RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
-                { binding: "m36RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating 3 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
-                { binding: "m60RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating 5 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
-                { binding: "m120RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating 10 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                { binding: "m255RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, header: "MStar Rating*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                { binding: "m36RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, header: "MStar Rating 3 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                { binding: "m60RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, header: "MStar Rating 5 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                { binding: "m120RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, header: "MStar Rating 10 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
                 
                 { binding: "m36PerfRatingDesc", format: "{0:n2}", header: "MStar Return 3 Yr", filterable: true, groupable: true, visible: !hideSomeColumns, allowSorting: true, menu: true, width: defaultWidth },
                 { binding: "m60PerfRatingDesc", format: "{0:n2}", header: "MStar Return 5 Yr", filterable: true, groupable: true, visible: !hideSomeColumns, allowSorting: true, menu: true, width: defaultWidth },
@@ -640,9 +635,10 @@ module Pa.Grid {
             });
 
              var gridId = gridIdentifier;
-
+             
              var columnPreferences = Pa.Storage.getVersionedData(gridId, null, null);
              if (columnPreferences) {
+                 
                  //Alter these defaults by user preferences that are in local storage
                  var alteredColumns = Pa.Grid.Helpers.alignUserColumnPreferences(columns, columnPreferences);
                  //If need to reset preference structure due to error
@@ -658,9 +654,27 @@ module Pa.Grid {
              if (!columns || columns.length === 0) {
                  alert("No columns defined!");
              }
-            return columns;
+
+            var columnCollection = grid.columns; //new wijmo.grid.ColumnCollection(grid, 0);
+             for (let i = 0; i < columns.length; i++) {
+                 var c = new wijmo.grid.Column(columns[i]);
+                 if (c.binding === "m255RatingValue" || c.binding === "m36RatingValue" || c.binding === "m60RatingValue" || c.binding === "m120RatingValue") {
+                     c.dataMap = mstarDataMap;
+                 }
+                 //{ binding: "m255RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                 //{ binding: "m36RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating 3 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                 //{ binding: "m60RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating 5 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                 //{ binding: "m120RatingValue", showDropDown: false, isContentHtml: true, isReadOnly: false, dataMap: mstarDataMap, header: "MStar Rating 10 Yr*", filterable: true, groupable: true, visible: true, allowSorting: true, menu: true, width: defaultWidth },
+                
+
+                 columnCollection.push(c);
+             }
+            var s = "s";
+            //  return columns;
         }
     }
+
+
 
 
     export class FundListTemplates {

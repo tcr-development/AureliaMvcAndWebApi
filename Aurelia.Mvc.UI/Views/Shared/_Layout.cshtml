@@ -42,28 +42,29 @@
          <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
       </footer>
    </div>
-   <script src="~/scripts/requirejs/require.js"></script>
-   <script>
+<script src="~/scripts/requirejs/require.js"></script>
+@if (!HttpContext.Current.IsDebuggingEnabled) {
+<script>
       var baseUrl = "@Html.BaseUrl(true)";
 
       require.config({
           baseUrl: baseUrl,
-          urlArgs: "bust=v2",
+          urlArgs: "bust=v3",
          paths: {
             aurelia: baseUrl + "scripts/aurelia",
-            views: baseUrl + "app/views",
-            services: baseUrl + "app/services",
-            models: baseUrl + "app/models",
+            views: baseUrl + "appmin/views",
+            services: baseUrl + "appmin/services",
+            models: baseUrl + "appmin/models",
             underscore: baseUrl + "scripts/underscore/underscore-min",
-            numerals: baseUrl + "scripts/numeral/numeral.min",
-            storage: baseUrl + "scripts/pa-storage",
-            pa: baseUrl + "scripts/pa-wijmo-grid"
+            numerals: baseUrl + "scripts/numeral/numeral.min"//,
+         //   storage: baseUrl + "scripts/pa-storage",
+          //  pa: baseUrl + "scripts/pa-wijmo-grid"
          },
          shim: {
             "underscore": {
                exports: "_"
-            } ,
-            "pa": {deps: ['storage', 'underscore'] }
+            }// ,
+         //   "pa": {deps: ['storage', 'underscore'] }
          }
       });
 
@@ -72,14 +73,55 @@
             require(["aurelia-bootstrapper"], function (b) {
                require(["numerals"], function (b) {
                });
-               require(["storage"], function (b) {
-               });
-               require(["pa"], function (b) {
-               });
+               //require(["storage"], function (b) {
+               //});
+               //require(["pa"], function (b) {
+               //});
             });
          });
       });
-   </script>
+</script>
+}
+else {
+<script>
+      var baseUrl = "@Html.BaseUrl(true)";
+
+      require.config({
+          baseUrl: baseUrl,
+          urlArgs: "bust=v5", // + Date.now(),
+         paths: {
+            aurelia: baseUrl + "scripts/aurelia",
+            views: baseUrl + "app/views",
+            services: baseUrl + "app/services",
+            models: baseUrl + "app/models",
+            underscore: baseUrl + "scripts/underscore/underscore-min",
+            numerals: baseUrl + "scripts/numeral/numeral.min"//,
+           // storage: baseUrl + "scripts/pa-storage",
+           // pa: baseUrl + "scripts/pa-wijmo-grid"
+         },
+         shim: {
+            "underscore": {
+               exports: "_"
+            } //,
+           // "pa": {deps: ['storage', 'underscore'] }
+         }
+      });
+
+      require(["aurelia/aurelia-bundle-latest"], function (au) {
+         require(["aurelia-bundle-manifest"], function (abm) {
+            require(["aurelia-bootstrapper"], function (b) {
+               require(["numerals"], function (b) {
+               });
+               //require(["storage"], function (b) {
+               //});
+               //require(["pa"], function (b) {
+               //});
+            });
+         });
+      });
+</script>
+}
+   
    @Scripts.Render("~/bundles/jquery")
    @Scripts.Render("~/bundles/bootstrap")
    @RenderSection("scripts", required: false)

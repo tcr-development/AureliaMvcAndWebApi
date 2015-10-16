@@ -201,6 +201,41 @@
     <Compile Include="WebApi\MoviesApiController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="appmin\converters\currency-format.js" />
+    <Content Include="appmin\converters\date-format.js" />
+    <Content Include="appmin\converters\decimal-format.js" />
+    <Content Include="appmin\models\models.js" />
+    <Content Include="appmin\namespace\LettersOnlyValidator.js" />
+    <Content Include="appmin\namespace\Test.js" />
+    <Content Include="appmin\namespace\validation.js" />
+    <Content Include="appmin\namespace\ZipCodeValidator.js" />
+    <Content Include="appmin\services\fundFilterService.js" />
+    <Content Include="appmin\services\movieService.js" />
+    <Content Include="appmin\views\about\about.html" />
+    <Content Include="appmin\views\about\about.js" />
+    <Content Include="appmin\views\about\main.js" />
+    <Content Include="appmin\views\fundfilters\decimalColumn.html" />
+    <Content Include="appmin\views\fundfilters\filters.html" />
+    <Content Include="appmin\views\fundfilters\filters.js" />
+    <Content Include="appmin\views\fundfilters\main.js" />
+    <Content Include="appmin\views\fundfilters\mstarRatingColumn.html" />
+    <Content Include="appmin\views\grid\index.html" />
+    <Content Include="appmin\views\grid\index.js" />
+    <Content Include="appmin\views\grid\multiobserver.js" />
+    <Content Include="appmin\views\grid\wijmocontrolapp.js" />
+    <Content Include="appmin\views\grid\wijmogrid.html" />
+    <Content Include="appmin\views\grid\wijmogrid.js" />
+    <Content Include="appmin\views\grid\wijmotwogridsampleapp.js" />
+    <Content Include="appmin\views\movies\details.html" />
+    <Content Include="appmin\views\movies\details.js" />
+    <Content Include="appmin\views\movies\edit.html" />
+    <Content Include="appmin\views\movies\edit.js" />
+    <Content Include="appmin\views\movies\list.html" />
+    <Content Include="appmin\views\movies\list.js" />
+    <Content Include="appmin\views\movies\main.js" />
+    <Content Include="appmin\views\movies\movie-item.js" />
+    <Content Include="appmin\views\movies\movies.html" />
+    <Content Include="appmin\views\movies\movies.js" />
     <Content Include="app\views\fundfilters\decimalColumn.html" />
     <Content Include="app\views\fundfilters\filters.html" />
     <Content Include="app\views\fundfilters\mstarRatingColumn.html" />
@@ -218,6 +253,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="gulpfile.js" />
     <Content Include="Scripts\aurelia\aurelia-bundle-latest.js" />
     <Content Include="Scripts\aurelia\aurelia-bundle.js" />
     <Content Include="Scripts\aurelia\aurelia-bundle.min.js" />
@@ -434,6 +470,7 @@
     <TypeScriptSourceMap>True</TypeScriptSourceMap>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
+    <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -457,6 +494,9 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>gulp</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

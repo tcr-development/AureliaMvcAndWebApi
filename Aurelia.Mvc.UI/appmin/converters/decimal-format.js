@@ -1,0 +1,1 @@
+define(["require","exports"],function(e,r){var n=function(){function e(){}return e.prototype.toView=function(e,r){return numeral(e).format(r)},e}();r.DecimalFormatValueConverter=n});

@@ -1,0 +1,1 @@
+define(["require","exports"],function(e,i){var t=function(){function e(e,i,t){this.id=e,this.title=i,this.releaseYear=t}return e}();i.MovieItem=t});

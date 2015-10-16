@@ -1,0 +1,1 @@
+define(["require","exports","aurelia-http-client"],function(t,i,n){var e=function(){function t(t,i){void 0===i&&(i="api/FundFiltersApi/"),this.httpClient=t,this.url=i}return t.prototype.getFundCriteria=function(){return this.httpClient.get(this.url+"FundCriteria").then(function(t){return t.content})},t.inject=[n.HttpClient],t}();i.FundFilterService=e});

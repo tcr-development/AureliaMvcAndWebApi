@@ -21,10 +21,13 @@ export class WijmoGrid {
     @bindable selectedRows: wijmo.collections.ObservableArray = new wijmo.collections.ObservableArray();
     @bindable currentRow: any = undefined;
     @bindable autoBind: boolean = false;
+    @bindable dependentGrid: boolean = false;
     @bindable scoringTools: boolean = false;
     @bindable data: wijmo.collections.ObservableArray = new wijmo.collections.ObservableArray();
+    //@bindable externaldata: wijmo.collections.ObservableArray = new wijmo.collections.ObservableArray();
     collectionView: wijmo.collections.CollectionView = new wijmo.collections.CollectionView();
     $parent;
+
     constructor(element) {
         this.element = element;
 
@@ -32,21 +35,35 @@ export class WijmoGrid {
     bind(bindingContext) {
         this.$parent = bindingContext;
     }
-
+    //watchCollection(s, e) {
+    //    var self = this;
+    //    //self.data.beginUpdate();
+    //    //self.data.clear();
+    //    //for (let i = 0; self.externaldata.length; i++) {
+    //    //    self.data.push(self.externaldata[i]);
+    //    //}
+    //    //self.data.endUpdate();
+        
+    //    console.log("changed " + self.id, self, self.data)
+    //}
     attached() {
-
-        this.id = (<HTMLElement> this.element).id;
-        this.grid = new wijmo.grid.FlexGrid(this.element);
         var self = this;
 
-        this.fundListGridHelper = new Pa.Grid.FundListGrid(this.id);
+        //self.externaldata.collectionChanged.addHandler(self.watchCollection, self);
+        self.id = (<HTMLElement>self.element).id;
+        self.grid = new wijmo.grid.FlexGrid(self.element);
+        
+
+        self.fundListGridHelper = new Pa.Grid.FundListGrid(self.id, self);
 
         var defaultOptions = self.fundListGridHelper.defaultOptions(this, false);
 
-        defaultOptions.frozenColumns = 5;
+        defaultOptions.frozenColumns = 0;
         defaultOptions.isReadOnly = false;
 
         this.fundListGridHelper.create(self, self.grid, defaultOptions);
+
+        Pa.Grid.FundListGrid.setColumnDef(false, self.id, self.grid);
 
         this.fundListGridHelper.createMStarEditor(this.grid.columns.getColumn('m255RatingValue'));
         this.fundListGridHelper.createMStarEditor(this.grid.columns.getColumn('m36RatingValue'));
@@ -62,8 +79,16 @@ export class WijmoGrid {
             });
         }
 
-        this.collectionView.sourceCollection = this.data;
-        this.grid.itemsSource = this.collectionView; //this.getData(100);
+        //if (this.dependentGrid) {
+        //    setTimeout(function() {
+        //        self.collectionView.sourceCollection = self.data;
+        //        self.grid.itemsSource = self.collectionView; //this.getData(100);
+        //    }, 5000)
+        //} else {
+            this.collectionView.sourceCollection = this.data;
+            this.grid.itemsSource = this.collectionView; //this.getData(100);
+        //}
+
 
         if (this.autoBind) {
             this.readFn();  
@@ -73,16 +98,14 @@ export class WijmoGrid {
         if (this.gridState) {
             this.gridState.activated = true; 
         }
-        
-       
     }
-    test(s, e) {
-        
-    }
+
     getSelectedRows() {
-        Pa.Grid.Helpers.getSelectedRows(this.grid, this.selectedRows);
+        var self = this;
+        Pa.Grid.Helpers.getSelectedRows(self.grid, self);
         return this.selectedRows;
     }
+
     getCurrentRow() {
         this.currentRow = Pa.Grid.Helpers.getCurrentRow(this.grid);
         return this.currentRow;

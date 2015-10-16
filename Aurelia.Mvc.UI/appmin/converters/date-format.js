@@ -1,0 +1,1 @@
+define(["require","exports"],function(t,e){var n=function(){function t(){}return t.prototype.toView=function(t,e){return moment(t).format(e)},t}();e.DateFormatValueConverter=n});

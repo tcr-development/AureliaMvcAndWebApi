@@ -7,7 +7,7 @@ namespace Aurelia.Mvc.UI {
       public static void RegisterBundles(BundleCollection bundles) {
          bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                      "~/Scripts/jquery-{version}.js"
-                    // ,"~/Scripts/underscore/underscore.js"
+                     ,"~/Scripts/underscore/underscore.js"
                      ));
 
          bundles.Add(new ScriptBundle("~/bundles/flexGrid").Include(
@@ -15,8 +15,8 @@ namespace Aurelia.Mvc.UI {
                      "~/Scripts/wijmo.input.min.js",
                      "~/Scripts/wijmo.grid.min.js",
                      "~/Scripts/wijmo.grid.filter.min.js",
-              //       "~/Scripts/pa-storage.js",
-                 //    "~/Scripts/pa-wijmo-grid.js",
+                     "~/Scripts/pa-storage.js",
+                     "~/Scripts/pa-wijmo-grid.js",
                      "~/Scripts/q.min.js"
                      ));
 

@@ -1,0 +1,1 @@
+define(["require","exports"],function(n,e){function i(n){n.use.standardConfiguration().developmentLogging(),n.start().then(function(n){return n.setRoot("views/grid/wijmogrid")})}e.configure=i});

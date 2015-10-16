@@ -11,6 +11,7 @@ export class Index{
     dispose: () => void;
     multiObserver;
     grid1: Wijmogrid.WijmoGrid;
+    grid2: Wijmogrid.WijmoGrid;
     grid1State: any = { activated: false };
     grid2State: any = { activated: false };
     count = 0;
@@ -45,7 +46,6 @@ export class Index{
         if (!this.grid1) {
             return 0;
         }
-
         this.eventCount = this.grid1.selectedRows.length;
     }
    updateCount() {

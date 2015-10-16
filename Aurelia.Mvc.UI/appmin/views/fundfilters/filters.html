@@ -1,0 +1,11 @@
+<template>
+   <div class="col-md-4 col-sm-12" repeat.for="group of groups">
+      <h3>${group.name}</h3>
+      <div repeat.for="section of group.sections">
+         <h4>${section.name}</h4>
+         <div repeat.for="column of section.columns">
+            <compose view-model.bind="column" view="views/fundfilters/${column.dataType}Column.html"></compose>
+         </div>
+      </div>
+   </div>
+</template>

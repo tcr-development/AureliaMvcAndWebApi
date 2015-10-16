@@ -1,0 +1,1 @@
+define(["require","exports","../../services/movieService","underscore"],function(e,i,t,n){var o=function(){function e(e,i){void 0===i&&(i=[]),this.movieSvc=e,this.items=i}return e.prototype.activate=function(e){var i=this;this.items.length<1&&this.movieSvc.getAll().then(function(e){n.forEach(e,function(e){i.items.push(e)})})},e.inject=[t.MovieService],e}();i.List=o});

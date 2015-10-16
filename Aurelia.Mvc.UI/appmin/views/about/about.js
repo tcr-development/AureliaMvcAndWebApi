@@ -1,0 +1,1 @@
+define(["require","exports","aurelia-router"],function(e,t,r){var o=function(){function e(e,t){this.router=e,this.message=t,this.message="Hello from about"}return e.inject=[r.Router],e}();t.About=o});

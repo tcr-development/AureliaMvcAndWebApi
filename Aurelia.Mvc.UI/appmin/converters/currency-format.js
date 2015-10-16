@@ -1,0 +1,1 @@
+define(["require","exports"],function(r,e){var n=function(){function r(){}return r.prototype.toView=function(r){return numeral(r).format("($0,0.00)")},r}();e.CurrencyFormatValueConverter=n});

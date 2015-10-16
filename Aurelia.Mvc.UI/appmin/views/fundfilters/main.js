@@ -1,0 +1,1 @@
+define(["require","exports"],function(e,n){function t(e){e.use.standardConfiguration().developmentLogging(),e.start().then(function(e){return e.setRoot("views/fundfilters/filters")})}n.configure=t});
